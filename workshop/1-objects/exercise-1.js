@@ -16,6 +16,25 @@
 //     monthOfBirth: 'July'
 // }
 
+let myObject = {
+  name: {
+    first: 'Roger',
+    last: 'Lam'
+  },
+  age: '38',
+  city: 'Montreal',
+  siblings: 1,
+  petNames: [
+    "Opie",
+    "Buttercup"
+  ],
+  monthOfBirth: 'May'
+}
+
+console.log(myObject);
+console.log(myObject.petNames);
+console.log(myObject.age);
+
 // A) console.log() your object.
 // B) console.log() a few of the values in the object.
 
@@ -32,6 +51,10 @@
 
 // HINT: You can just modify the object that you created before.
 
+myObject.occupation = "supervisor";
+myObject.birthdate = "May 24th, 1982";
+myObject.favouriteFood = "curry";
+
 //-------------------------------------------------
 
 // Exercise B
@@ -47,7 +70,13 @@
 // HINT: Most movies have multiple actors. What data-structure do we use to
 // represent a collection of similar things?
 
-let favoriteMovie = {};
+let favoriteMovie = {
+  title: "How to Train Your Dragon",
+  director: ["Dean DeBlois", "Chris Sanders"],
+  yearReleased: "2010",
+  rating: 75,
+  actors: ["Jay Baruchel", "Gerard Butler", "Craig Ferguson", "America Ferrera"]
+};
 
 //-------------------------------------------------
 
@@ -62,8 +91,8 @@ const person = {
   hometown: 'somewhere',
 };
 
-person[age]; // => 26
-person.key; // => "Alyssa P. Hacker"
+console.log(person.age); // => 26
+console.log(person[key]); // => "Alyssa P. Hacker"
 
 //-------------------------------------------------
 
@@ -85,8 +114,11 @@ const alyssa = {
 };
 
 function fullName(person) {
-  // Your code here
+  let { first, middle, last } = person.name;
+  return `${first} ${middle} ${last}`;
 }
+
+console.log("Exercise D");
 
 console.log(fullName(alyssa)); // => "Alyssa P. Hacker"
 
@@ -108,8 +140,16 @@ const rick = {
   age: 66,
 };
 
+// this seems like a brute force way of doing this. There should be a more elegant solution.
+
 function betterFullName(person) {
-  // Your code here
+  if (person.name.middle === undefined) {
+    let { first, last } = person.name;
+    return `${first} ${last}`;
+  } else {
+    let { first, middle, last } = person.name;
+    return `${first} ${middle} ${last}`;
+  }
 }
 
 console.log(betterFullName(rick)); // => "Rick Sanchez"
