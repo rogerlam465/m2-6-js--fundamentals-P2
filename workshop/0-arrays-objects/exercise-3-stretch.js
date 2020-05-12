@@ -23,3 +23,17 @@ let mostPopularFood = [
 // After all the foods have been logged, the program should end.
 //
 // HINT: You'll need to use `setInterval` and `clearInterval`.
+
+let counter = mostPopularFood.length;
+
+let foodCountdown = setInterval(function () {
+
+  if (counter <= 0) {
+    clearInterval(foodCountdown);
+  } else {
+    console.log(counter + ". " + mostPopularFood[counter - 1]);
+  }
+
+  counter--;
+
+}, 1000);

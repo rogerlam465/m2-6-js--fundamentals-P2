@@ -25,3 +25,20 @@ let mostPopularFood = [
 // Output them in a tidy top-ten fashion in the console.
 
 // NO for loops (use `forEach` instead)
+
+// ajoute les burritos
+
+mostPopularFood.unshift('bean burritos');
+
+// trouver longueur de l'array, ensuite supprimer le dernier
+
+mostPopularFood.splice(mostPopularFood.length - 1, 1);
+
+mostPopularFood.push('buffalo-flavored cauliflower');
+
+let counterVar = 0;
+
+mostPopularFood.forEach(function (item) {
+  counterVar++;
+  console.log(counterVar + ". " + item);
+})
