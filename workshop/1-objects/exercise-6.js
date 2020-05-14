@@ -87,8 +87,68 @@ For example, the main superpowers array should be:
 ⛔️ ['can-blink-lights', null]
 */
 
+// hmm. actually, the common bits are at the end.
+// name, age, status, superpowerN
+// so we want to create an array of the keys
+// go through each item, use string.includes()
+// determine if it has name, age, etc.
+
 function transformData(data) {
-  // Your code here
+  let newObject = {
+    "name": data.name,
+    "age": data.age,
+    "status": data.status,
+    "address": {
+      "streetAddress": data.address1,
+      "city": data.addressCity,
+      "state": data.addressState,
+      "country": data.addressCountry
+    },
+    superpowers: [
+      'can-blink-lights'
+    ],
+    relationships: []
+  };
+
+  // only the relationships.
+
+  // the relevant people
+
+  let targetRel = ['mother', 'bestFriend', 'girlfriend'];
+
+  // the relevant data bits
+
+  let targetData = ['Name', 'Age', 'Status'];
+
+  // can't return 'null', I guess
+
+  function superpowers(a, b) {
+    let relevantPowers = [];
+    if (a) {
+      relevantPowers.push(a);
+    }
+    if (b) {
+      relevantPowers.push(b);
+    }
+    return relevantPowers;
+  }
+
+  targetRel.forEach(function (person) {
+
+    let tempObj = {
+      type: person,
+      name: data[person + targetData[0]],
+      age: data[person + targetData[1]],
+      status: data[person + targetData[2]],
+      superpowers:
+        superpowers(data[person + "Superpower1"], data[person + "Superpower2"])
+    }
+
+    newObject.relationships.push(tempObj);
+  });
+
+  return newObject;
+
 }
 
 /*
