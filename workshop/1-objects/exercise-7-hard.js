@@ -31,7 +31,7 @@ const favouriteDessertsGroupB = {
   colin: 'gummy bears',
   damien: 'child tears',
   ellicia: 'panda express',
-  fertrude: 'gummy bears'.
+  fertrude: 'gummy bears',
   glinda: 'pie',
   hethel: 'not applicable',
   irsula: 'rum cake',
@@ -54,7 +54,36 @@ const favouriteDessertsGroupB = {
 // - Second, put them in order
 
 function sortDessertsByPopularity(dessertObject) {
-  // Write code
+  let dessertHolder = {};
+
+  let fullDessertArray = Object.values(dessertObject);
+
+  let noDupeDessertsArray = Array.from(new Set(fullDessertArray));
+
+  noDupeDessertsArray.forEach(function (item) {
+    let counter = 0;
+    fullDessertArray.forEach(function (food) {
+      if (food === item) {
+        counter++;
+      }
+    });
+
+    dessertHolder[item] = counter;
+
+  });
+
+  return Object.keys(dessertHolder).sort(function (a, b) {
+
+    if (dessertHolder[a] > dessertHolder[b]) {
+      return -1;
+    }
+
+    if (dessertHolder[a] < dessertHolder[b]) {
+      return 1;
+    }
+
+    return 0;
+  });
 }
 
 console.log(
@@ -96,7 +125,20 @@ order, and that's 100% OK).
 */
 
 function groupPeopleByDessert(dessertObject) {
+  let finalDessertObj = {}
 
+  // cycle through all the keys in dessertObject
+
+  Object.keys(dessertObject).forEach(function (item) {
+    if (finalDessertObj.hasOwnProperty(dessertObject[item])) {
+      let dessertArray = finalDessertObj[dessertObject[item]];
+      dessertArray.push(item);
+    } else {
+      finalDessertObj[dessertObject[item]] = [item];
+    }
+  })
+
+  return finalDessertObj;
 }
 
 console.log(
